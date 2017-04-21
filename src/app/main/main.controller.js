@@ -14,7 +14,7 @@
 
 
 $scope.postMessage=function(){
- $log.log("test message1");
+ $log.log("tessdfsdft message1");
 
 }
 
