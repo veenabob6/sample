@@ -3,20 +3,36 @@
 
   angular
     .module('myfrontend')
-    .controller('MainController', MainController);
+    .controller('MainController',MainController);
 
   /** @ngInject */
-  function MainController($scope,$log) {
-    var vm = this;
+  function MainController($scope,$http,$log) {
 
+    var vm=this;
+    this.creationDate = 1492798393079;
 
-    vm.creationDate = 1492798393079;
+    $scope.getMessage=function(){
+      alert("hello");
+      $http.get('http://localhost:5000/api/message').then(function(result) {
+        console.log("get request successfully");
+        console.log(result);
+      }, function(data){
+        console.error("error in get");
+      })
+    }
 
+  $scope.postMessage=function(){
 
-$scope.postMessage=function(){
- $log.log("dfsf message1");
+   $http.post('http://localhost:5000/api/message',{'msg' :this.message}).success(function(data) {
+      console.log("posted successfully");
+    }).error(function(data) {
+      console.error("error in posting");
+
+    })
 
 }
+
+    $scope.getMessage();
 
 
 
