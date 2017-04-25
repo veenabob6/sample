@@ -8,16 +8,16 @@
   /** @ngInject */
   function MainController($scope,$http,$log) {
 
-    var vm=this;
+
     this.creationDate = 1492798393079;
 
     $scope.getMessage=function(){
-
+      var vm = this;
       $http.get('http://localhost:5000/api/message').then(function(result) {
         console.log("get request successfully");
-        console.log(result);
+        vm.messages = result.data;
       })
-    }
+    };
 
     $scope.postMessage = function () {
 
@@ -28,7 +28,7 @@
 
     })
 
-}
+    };
 
     $scope.getMessage();
 
